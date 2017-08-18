@@ -14,18 +14,31 @@ def read_map_from_file(filename):
     return board
 
 
-def moving(x, y, board):
-    board[x][y] = '@'
+def moving(y, x, board):
+    board[y][x] = '@'
+    os.system('clear')
     print_map(board)
     while True:
         ch = getch()
-        if ch == 'w':
-            board[x][y] = ' '
-            y = y + 1
-            os.system('clear')
+        if ch == 'd':
+            board[y][x] = ' '
+            x = x + 1
             break
-        print_map(board)
-    moving(x, y, board)
+        elif ch == 'a':
+            board[y][x] = ' '
+            x = x - 1
+            break
+        elif ch == 'w':
+            board[y][x] = ' '
+            y = y - 1
+            break
+        elif ch == 's':
+            board[y][x] = ' '
+            y = y + 1
+            break
+    os.system('clear')
+    print_map(board)
+    moving(y, x, board)
 
 
 def print_map(board):
