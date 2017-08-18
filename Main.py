@@ -60,11 +60,24 @@ def getch():
     return ch
 
 
+def display_start_screen():
+    with open('start_screen.txt') as f:
+        read_data = f.read()
+    print(read_data)
+
+
+def menu_select():
+    while True:
+        answer = input('Choose option: ')
+        if answer == "1":
+            map = read_map_from_file('Map1.txt')
+            moving(5, 5, map)
+
+
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    map = read_map_from_file('Map1.txt')
-    moving(5, 5, map)
-
+    display_start_screen()
+    menu_select()
 
 
 if __name__ == '__main__':
