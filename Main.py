@@ -60,8 +60,8 @@ def getch():
     return ch
 
 
-def display_start_screen():
-    with open('start_screen.txt') as f:
+def display_screen(filename):
+    with open(filename) as f:
         read_data = f.read()
     print(read_data)
 
@@ -70,13 +70,26 @@ def menu_select():
     while True:
         answer = input('Choose option: ')
         if answer == "1":
-            map = read_map_from_file('Map1.txt')
-            moving(5, 5, map)
+            moving(5, 5, read_map_from_file('Map1.txt'))
+        elif answer == "2":
+            os.system('clear')
+            display_screen('howtoplay_screen.txt')
+            while True:
+                back = input('Press \'z\' to go back: ')
+                if back == 'z':
+                    main()
+        elif answer == "3":
+            os.system('clear')
+            display_screen('about_screen.txt')
+            while True:
+                back = input('Press \'z\' to go back: ')
+                if back == 'z':
+                    main()
 
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    display_start_screen()
+    display_screen('start_screen.txt')
     menu_select()
 
 
