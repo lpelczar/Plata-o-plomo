@@ -10,35 +10,48 @@ def read_map_from_file(filename):
         read_data = f.read().splitlines()
 
     board = [list(x) for x in read_data]
+    print(board)
 
     return board
 
 
 def moving(y, x, board):
+
     board[y][x] = '@'
+    wall = ['X']
     os.system('clear')
     print_map(board)
+
     while True:
         ch = getch()
-        if ch == 'd':
+        if ch == 'd' and board[y][x+1] not in wall:
             board[y][x] = ' '
             x = x + 1
             break
-        elif ch == 'a':
+        elif ch == 'a' and board[y][x-1] not in wall:
             board[y][x] = ' '
             x = x - 1
             break
-        elif ch == 'w':
+        elif ch == 'w' and board[y-1][x] not in wall:
             board[y][x] = ' '
             y = y - 1
             break
-        elif ch == 's':
+        elif ch == 's' and board[y+1][x] not in wall:
             board[y][x] = ' '
             y = y + 1
             break
+        elif ch == 'q':
+            sys.exit()
+
     os.system('clear')
     print_map(board)
     moving(y, x, board)
+
+
+def interactions(y, x, board):
+
+    if board[y][x] == 'A':
+        ask = input('Welcome in my shop! Chose want do you want to do:\n')
 
 
 def print_map(board):
@@ -63,8 +76,9 @@ def getch():
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     map = read_map_from_file('Map1.txt')
-    moving(5, 5, map)
 
+    while True:
+        moving(5, 5, map)
 
 
 if __name__ == '__main__':
