@@ -102,10 +102,8 @@ def menu_select():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    map = read_map_from_file('Map1.txt')
-
-    while True:
-        moving(5, 5, map)
+    display_screen('start_screen.txt')
+    menu_select()
 
 
 if __name__ == '__main__':
