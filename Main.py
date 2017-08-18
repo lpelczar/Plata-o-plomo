@@ -6,14 +6,26 @@ import termios
 
 def read_map_from_file(filename):
 
-    board = []
-
     with open(filename) as f:
         read_data = f.read().splitlines()
 
     board = [list(x) for x in read_data]
 
     return board
+
+
+def moving(x, y, board):
+    board[x][y] = '@'
+    print_map(board)
+    while True:
+        ch = getch()
+        if ch == 'w':
+            board[x][y] = ' '
+            y = y + 1
+            os.system('clear')
+            break
+        print_map(board)
+    moving(x, y, board)
 
 
 def print_map(board):
@@ -37,10 +49,9 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print_map(read_map_from_file('Map1.txt'))
+    map = read_map_from_file('Map1.txt')
+    moving(5, 5, map)
 
-    x = getch()
-    print(x)
 
 
 if __name__ == '__main__':
