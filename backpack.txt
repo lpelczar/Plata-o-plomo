@@ -1,0 +1,2 @@
+long sword, 10, 12
+bow, 8, 14
