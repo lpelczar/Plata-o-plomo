@@ -10,55 +10,64 @@ def read_map_from_file(filename):
         read_data = f.read().splitlines()
 
     board = [list(x) for x in read_data]
-    print(board)
 
     return board
 
 
-def moving(y, x, board):
+def player_starting_position(y, x, board):
+
+    # board[y][x] = '@'
+    # print_map(y, x, board)
+    position = (y, x)
+
+    return position
+
+
+def player_moving(y, x, board):
 
     board[y][x] = '@'
-    wall = ['X']
-    os.system('clear')
-    print_map(board)
+    wall = ['X', 'A']
+    position = ()
 
     while True:
         ch = getch()
+
         if ch == 'd' and board[y][x+1] not in wall:
             board[y][x] = ' '
             x = x + 1
+            position = (y, x)
             break
+
         elif ch == 'a' and board[y][x-1] not in wall:
             board[y][x] = ' '
             x = x - 1
+            position = (y, x)
             break
+
         elif ch == 'w' and board[y-1][x] not in wall:
             board[y][x] = ' '
             y = y - 1
+            position = (y, x)
             break
+
         elif ch == 's' and board[y+1][x] not in wall:
             board[y][x] = ' '
             y = y + 1
+            position = (y, x)
             break
+
         elif ch == 'q':
             sys.exit()
 
-    os.system('clear')
-    print_map(board)
-    moving(y, x, board)
+    return position
 
 
-def interactions(y, x, board):
+def print_map(y, x, board):
 
-    if board[y][x] == 'A':
-        ask = input('Welcome in my shop! Chose want do you want to do:\n')
-
-
-def print_map(board):
+    board[y][x] = '@'
 
     for row in board:
         print(''.join(row))
-        # print(row)
 
 
 def getch():
@@ -73,37 +82,18 @@ def getch():
     return ch
 
 
-def display_screen(filename):
-    with open(filename) as f:
-        read_data = f.read()
-    print(read_data)
-
-
-def menu_select():
-    while True:
-        answer = input('Choose option: ')
-        if answer == "1":
-            moving(5, 5, read_map_from_file('Map1.txt'))
-        elif answer == "2":
-            os.system('clear')
-            display_screen('howtoplay_screen.txt')
-            while True:
-                back = input('Press \'z\' to go back: ')
-                if back == 'z':
-                    main()
-        elif answer == "3":
-            os.system('clear')
-            display_screen('about_screen.txt')
-            while True:
-                back = input('Press \'z\' to go back: ')
-                if back == 'z':
-                    main()
-
-
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    display_screen('start_screen.txt')
-    menu_select()
+    map1 = read_map_from_file('RogueGame/Map1.txt')
+    position = player_starting_position(5, 5, map1)
+    print_map(position[0], position[1], map1)
+
+    while True:
+
+        position = player_moving(position[0], position[1], map1)
+        os.system('clear')
+        print_map(position[0], position[1], map1)
+        Interactions.shop(position[0], position[1], map1)
 
 
 if __name__ == '__main__':
