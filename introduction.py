@@ -22,16 +22,20 @@ def go_back():
 def menu_select():
     clear_console()
     display_screen('start_screen.txt')
+
     while True:
         answer = input("Choose option: ")
+
         if answer == '1':
             character_creation()
             break
+
         elif answer == '2':
             clear_console()
             display_screen('howtoplay_screen.txt')
             go_back()
             break
+
         elif answer == "3":
             clear_console()
             display_screen('about_screen.txt')
@@ -42,11 +46,13 @@ def menu_select():
 def character_creation():
     clear_console()
     symbols = ['@', '#', '&']
+
     while True:
         appearance = input('Select your appearance: @, # or & ')
         if appearance in symbols:
             break
     clear_console()
+
     while True:
         bonus = input('''Select one bunus:
                          1. Huge \033[91mBackpack\033[0m (capacity increased by 100)
