@@ -2,6 +2,8 @@ import os
 import sys
 import tty
 import termios
+import player
+import backpack
 
 
 def read_map_from_file(filename):
@@ -15,9 +17,6 @@ def read_map_from_file(filename):
 
 
 def player_starting_position(y, x, board):
-
-    # board[y][x] = '@'
-    # print_map(y, x, board)
     position = (y, x)
 
     return position
@@ -56,6 +55,10 @@ def player_moving(y, x, board):
             position = (y, x)
             break
 
+        elif ch == 'b':
+            inventory = backpack.open_backpack_file()
+            backpack.display_backpack(inventory)
+
         elif ch == 'q':
             sys.exit()
 
@@ -68,6 +71,8 @@ def print_map(y, x, board):
 
     for row in board:
         print(''.join(row))
+
+    player.display_stats(10, 15, 20, 20)  # Printuje staty gracza pod mapa
 
 
 def getch():
@@ -84,7 +89,7 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    map1 = read_map_from_file('RogueGame/Map1.txt')
+    map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(5, 5, map1)
     print_map(position[0], position[1], map1)
 
@@ -93,7 +98,7 @@ def main():
         position = player_moving(position[0], position[1], map1)
         os.system('clear')
         print_map(position[0], position[1], map1)
-        Interactions.shop(position[0], position[1], map1)
+        # Interactions.shop(position[0], position[1], map1)
 
 
 if __name__ == '__main__':
