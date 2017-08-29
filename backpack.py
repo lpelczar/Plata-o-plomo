@@ -8,7 +8,7 @@ def open_backpack_file():
 
         for line in f:
             try:
-                backpack[line[0]] = ('dmg:', int(line[1]), 'weight:', int(line[2]))
+                backpack[line[0]] = (int(line[1]), int(line[2]), str(line[3]))
             except:
                 continue
     print(backpack)
@@ -20,22 +20,34 @@ def backpack_items(backpak):
 
 
 def display_backpack(backpack):
-    pass
+
+    table_line = '_'
+    table_lenght = 24
+
+    for key, value in backpack.items():
+
+        if value[2] == 'cloths':
+            formated_line = '{:>5} {:<5} {:>15} {:>15} {:<5}'.format('Armor:', value[0], key, 'Weight:', value[1])
+            print(table_line*table_lenght, 'CLOTHS', table_line*table_lenght)
+            print('|', formated_line, '|')
+            print(table_line*len(formated_line))
+
+        if value[2] == 'weapon':
+            print(table_line*table_lenght, 'GUNS', table_line*table_lenght)
+            formated_line = '{:>3} {:<5} {:>15} {:>15} {:<3}'.format('Dmg:', value[0], key, 'Weight:', value[1])
+            print('|', formated_line, '|')
+            print(table_line*len(formated_line))
 
 
 def save_backpack_to_file(backapack):
-    save_list = []
 
     with open('backpack.txt', 'a') as f:
-        f = csv.writer(f, delimiter=',')
+        w = csv.writer(f, delimiter=',')
 
-        for key in backpack:
-            save_list.append([key, backpack[key]])
-        print(save_list)
-
-        for data in save_list:
-            f.writerow(save_list[data])
+        for key, value in backpack.items():
+            w.writerow((key, value[0], value[1], value[2]))
 
 
 backpack = open_backpack_file()
-save_backpack_to_file(backpack)
+# save_backpack_to_file(backpack)
+display_backpack(backpack)
