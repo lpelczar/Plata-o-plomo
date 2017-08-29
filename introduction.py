@@ -35,15 +35,15 @@ def menu_select():
 def character_creation():
     clear_console()
     symbols = ['@', '#', '&']
-
+    display_screen('intro.txt')
     while True:
         appearance = input('Select your appearance: @, # or & ')
         if appearance in symbols:
             break
-    clear_console()
+    print('')
 
     while True:
-        bonus = input('''Select one bunus:
+        bonus = input('''Select starting bonus:
                          1. Huge \033[91mBackpack\033[0m (capacity increased by 100)
                          2. \033[91mGun\033[0m (bigger damage for start)
                          3. Nice \033[91mshirt\033[0m (increase armor and personal charm, more money for drugs)
