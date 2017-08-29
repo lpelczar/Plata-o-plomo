@@ -85,6 +85,7 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
+    print(introduction.menu_select())
     map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(5, 5, map1)
     print_map(position[0], position[1], map1)
@@ -98,4 +99,4 @@ def main():
 
 
 if __name__ == '__main__':
-    introduction.menu_select()
+    main()

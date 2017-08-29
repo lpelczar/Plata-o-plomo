@@ -22,10 +22,11 @@ def go_back():
 def menu_select():
     clear_console()
     display_screen('start_screen.txt')
+    starting_bonus = ()
     while True:
         answer = input("Choose option: ")
         if answer == '1':
-            character_creation()
+            starting_bonus = character_creation()
             break
         elif answer == '2':
             clear_console()
@@ -37,6 +38,7 @@ def menu_select():
             display_screen('about_screen.txt')
             go_back()
             break
+    return starting_bonus
 
 
 def character_creation():
