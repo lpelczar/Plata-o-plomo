@@ -4,6 +4,7 @@ import tty
 import termios
 import player
 import backpack
+import introduction
 
 
 def read_map_from_file(filename):
@@ -65,14 +66,14 @@ def player_moving(y, x, board):
     return position
 
 
-def print_map(y, x, board):
+def print_map(y, x, board, capacity, damage, armor, cash):
 
     board[y][x] = '@'
 
     for row in board:
         print(''.join(row))
 
-    player.display_stats(10, 15, 20, 20)  # Printuje staty gracza pod mapa
+    player.display_stats(capacity, damage, armor, cash)  # Printuje staty gracza pod mapa
 
 
 def getch():
@@ -89,6 +90,7 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
+    introduction.menu_select()
     map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(5, 5, map1)
     print_map(position[0], position[1], map1)
