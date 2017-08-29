@@ -11,37 +11,25 @@ def display_screen(filename):
     print(read_data)
 
 
-def go_back():
-    while True:
-        back = input('Press \'z\' to go back: ')
-        if back == 'z':
-            menu_select()
-            break
-
-
 def menu_select():
-    clear_console()
-    display_screen('start_screen.txt')
-    starting_bonus = ()
+
     while True:
+        clear_console()
+        display_screen('start_screen.txt')
         answer = input("Choose option: ")
 
         if answer == '1':
-            starting_bonus = character_creation()
             break
 
         elif answer == '2':
             clear_console()
             display_screen('howtoplay_screen.txt')
-            go_back()
-            break
+            input('\nPress any key to go back')
 
-        elif answer == "3":
+        elif answer == '3':
             clear_console()
             display_screen('about_screen.txt')
-            go_back()
-            break
-    return starting_bonus
+            input('\nPress any key to go back')
 
 
 def character_creation():

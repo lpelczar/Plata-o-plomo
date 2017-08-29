@@ -2,8 +2,9 @@ import introduction
 
 
 def player_starting_stats(capacity=200, damage=10, armor=15, cash=1000):
+
     player_stats = [capacity, damage, armor, cash]
-    starting_bonus = introduction.menu_select()
+    starting_bonus = introduction.character_creation()
     print(starting_bonus)
     print(player_stats)
 
@@ -19,15 +20,18 @@ def player_starting_stats(capacity=200, damage=10, armor=15, cash=1000):
     return player_stats
 
 
-def display_stats(player_stats):  # capacity, damage, armor, cash):
+def display_stats(player_stats):
 
-    # player_stats = [capacity, damage, armor, cash]
     stats_name = ['Capacity:', 'Damage:', 'Armor:', 'Cash:']
     table_lenght = 10
-    print(' _', ' Pablo Escobar ', '_')
+    print(' _-', ' Pablo Escobar ', '-_')
 
     for name, line in zip(stats_name, player_stats):
-        formated_line = '{:<10} {:<4}'.format(name, line)
+        formated_line = '{:<10} {:<6}'.format(name, line)
+        if name == 'Cash:':
+            formated_line = '{:<10} {:<7}'.format(name, str(line)+' $')
+            print('| ', formated_line, '|')
+            continue
         print('| ', formated_line, ' |')
 
-    print('|', ' _' * (table_lenght-2), ' |')
+    print('|', ' _' * (table_lenght-1), ' |')
