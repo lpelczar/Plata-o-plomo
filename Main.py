@@ -66,14 +66,14 @@ def player_moving(y, x, board):
     return position
 
 
-def print_map(y, x, board, capacity, damage, armor, cash):
+def print_map(y, x, board, player_stats):
 
     board[y][x] = '@'
 
     for row in board:
         print(''.join(row))
 
-    player.display_stats(capacity, damage, armor, cash)  # Printuje staty gracza pod mapa
+    player.display_stats(player_stats)  # Printuje staty gracza pod mapa
 
 
 def getch():
@@ -90,16 +90,17 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    introduction.menu_select()
+    player_stats = player.player_starting_stats()
+
     map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(5, 5, map1)
-    print_map(position[0], position[1], map1)
+    print_map(position[0], position[1], map1, player_stats)
 
     while True:
 
         position = player_moving(position[0], position[1], map1)
         os.system('clear')
-        print_map(position[0], position[1], map1)
+        print_map(position[0], position[1], map1, player_stats)
         # Interactions.shop(position[0], position[1], map1)
 
 
