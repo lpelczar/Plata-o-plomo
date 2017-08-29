@@ -2,6 +2,7 @@ import os
 import sys
 import tty
 import termios
+import introduction
 
 
 def read_map_from_file(filename):
@@ -84,7 +85,7 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
-    map1 = read_map_from_file('RogueGame/Map1.txt')
+    map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(5, 5, map1)
     print_map(position[0], position[1], map1)
 
@@ -93,8 +94,8 @@ def main():
         position = player_moving(position[0], position[1], map1)
         os.system('clear')
         print_map(position[0], position[1], map1)
-        Interactions.shop(position[0], position[1], map1)
+        #Interactions.shop(position[0], position[1], map1)
 
 
 if __name__ == '__main__':
-    main()
+    introduction.menu_select()
