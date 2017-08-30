@@ -1,4 +1,5 @@
 import backpack
+import time
 
 
 def take_quest(y, x, board, player_stats):
@@ -36,7 +37,7 @@ def quest_1(player_stats):
         if answer == 'yes':
             player_stats[3] -= 800
             inventory['lab_part'] = (0, 100, 'quest_item')
-            backpack.save_backpack_to_file(inventory)
+            backpack.add_item_to_backpack_file(inventory)
             break
 
         elif answer == 'no':
@@ -47,10 +48,18 @@ def quest_1(player_stats):
 
 def reapair_lab():
     inventory = backpack.open_backpack_file()
+    print(inventory)
 
-    for key in inventory:
-        if key == 'lab_part':
-            print('PABLO: Finally my laboratorium is work fine!\n Now you can make COCAINE! Lets get to work amigos!!!')
+    if 'lab_part' in inventory:
+        print('PABLO: Finally my laboratorium is work fine!\n Now you can make COCAINE! Lets get to work amigos!!!')
+        del inventory['lab_part']
 
-        elif 'lab_part' not in inventory:
-            print('PABLO: My laboratorium is broken i need to find lab part to fix it!')
+        time.sleep(2)
+        print('YOU EARN 20KG COCAINE!')
+
+        inventory['COCAINE'] = (0, 20, 'drugs')
+        print(inventory)
+        backpack.save_backpack_to_file(inventory)
+
+    elif 'lab_part' not in inventory:
+        print('PABLO: My laboratorium is broken i need to find lab part to fix it!')
