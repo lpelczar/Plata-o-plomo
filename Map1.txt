@@ -8,11 +8,11 @@ X                                                                               
 X                                                                                     X
 X                                                                                     X
 X                                                                                     X
-X                                                                                     (
-X                                                                                     (
-X                                                                                     (
-X                                                                                     (
-X                                                                                     (
+X                                                                        XXXXXXXXXXXXXX
+X                                                                        X            I
+X                                                                        (   NEXT LVL I
+X                                                                        X            I
+X                                                                        XXXXXXXXXXXXXX
 X                                                                                     X
 X                                                                                     X
 X                                                                                     X

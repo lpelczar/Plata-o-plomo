@@ -1,8 +1,9 @@
 import backpack
+import tnt
 
 
 def take_quest(y, x, board, player_stats):
-    interactions = ['?', '(', 'A', '|', '-']
+    interactions = ['?', 'A', '|', '-']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
         interaction = (board[y+1][x], board[y-1][x])
@@ -11,6 +12,9 @@ def take_quest(y, x, board, player_stats):
     elif board[y+1][x] in interactions or board[y-1][x] in interactions:
         interaction = (board[y+1][x], board[y-1][x])
         check_encounter(player_stats, interaction)
+
+    elif board[y][x+1] == '(':
+        tnt.ask_explode_intent(y, x, board, player_stats)
 
     return player_stats
 
