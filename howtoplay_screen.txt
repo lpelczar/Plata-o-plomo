@@ -2,3 +2,9 @@
 
 - Use       "W"       to move the player
         "A" "S" "D"
+
+- Use console to buy items or perform actions in game
+
+- Press 'b' to display backpack, use 'w''s''a''d' to exit
+
+- Press 'q' to quit the game
