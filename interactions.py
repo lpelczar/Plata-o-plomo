@@ -1,23 +1,24 @@
 import backpack
 import tnt
 import time
+import random
 
 
 def take_quest(y, x, board, player_stats):
     interactions = ['?', '|']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
-        interaction = (board[y+1][x], board[y-1][x])
+        interaction = (board[y][x+1], board[y][x-1])
         check_encounter(player_stats, interaction)
 
     elif board[y+1][x] in interactions or board[y-1][x] in interactions:
         interaction = (board[y+1][x], board[y-1][x])
         check_encounter(player_stats, interaction)
 
-    if board[y][x+1] == '(':
+    elif board[y][x+1] == '(':
         tnt.ask_explode_intent(y, x, board, player_stats)
 
-    if board[y-1][x] == '=':
+    elif board[y-1][x] == '=':
         guns_shop(player_stats)
 
     return player_stats
@@ -29,6 +30,9 @@ def check_encounter(player_stats, interaction):
 
     elif interaction[0] == '|' or interaction[1] == '|':
         repair_lab()
+
+    elif interaction[0] == '$' or interaction[1] == '$':
+        sell_drugs(player_stats)
 
     return player_stats
 
@@ -101,3 +105,16 @@ def repair_lab():
 
     elif 'lab_part' not in inventory:
         print('PABLO: My laboratorium is broken i need to find lab part to fix it!')
+
+
+def sell_drugs(player_stats):
+    inventory = backpack.open_backpack_file()
+    print('PABLO: Hi bastards! Do you want to buy some COCAINE?')
+
+    while True:
+        if 'COCAINE' in inventory:
+            answer = int(input('BASTARDS: Hola Pablo! Ofcourse we need it! Tell me the price for 1kg?\n'))
+            price = random.randint(100, 300, 50)
+            if answer > 500:
+                print('\nBASTARDS: Thats not fair Pablo! I can pay', price, '$.')
+                inventory['COCAINE']
