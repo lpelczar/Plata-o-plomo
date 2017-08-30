@@ -4,7 +4,7 @@ import time
 
 
 def take_quest(y, x, board, player_stats):
-    interactions = ['?', '|', '=']
+    interactions = ['?', '|']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
         interaction = (board[y+1][x], board[y-1][x])
@@ -14,11 +14,11 @@ def take_quest(y, x, board, player_stats):
         interaction = (board[y+1][x], board[y-1][x])
         check_encounter(player_stats, interaction)
 
-    elif board[y][x+1] == '(':
+    if board[y][x+1] == '(':
         tnt.ask_explode_intent(y, x, board, player_stats)
 
-    elif board[y+1][x] == '=':
-        guns_shop()
+    if board[y-1][x] == '=':
+        guns_shop(player_stats)
 
     return player_stats
 
@@ -33,7 +33,7 @@ def check_encounter(player_stats, interaction):
     return player_stats
 
 
-def guns_shop():
+def guns_shop(player_stats):
     inventory = {}
     yes = ['YES', 'yes', 'Yes']
     no = ['NO', 'no', 'No']
@@ -44,15 +44,22 @@ def guns_shop():
             while True:
                 answer = input('What do you want to buy? I can offer AK-47 and M4-A1: ')
                 if answer == 'AK-47':
+                    player_stats[3] -= 200
                     player_stats[1] += 100
                     inventory['AK-47'] = (25, 100, 'weapon')
                     backpack.add_item_to_backpack_file(inventory)
+                    print('Item added to your inventory!')
+                    time.sleep(1)
                     break
                 elif answer == 'M4-A1':
+                    player_stats[3] -= 200
                     player_stats[1] += 100
                     inventory['M4-A1'] = (30, 90, 'weapon')
                     backpack.add_item_to_backpack_file(inventory)
+                    print('Item added to your inventory!')
+                    time.sleep(1)
                     break
+            break
         elif buy in no:
             break
 

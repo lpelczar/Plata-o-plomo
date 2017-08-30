@@ -27,7 +27,7 @@ def player_starting_position(y, x, board):
 
 def player_moving(y, x, board):
 
-    wall = ['X', 'A', '_', '|']
+    wall = ['X', 'A', '_', '|', '=']
     position = ()
 
     while True:
