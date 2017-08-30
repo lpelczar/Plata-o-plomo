@@ -19,7 +19,7 @@ X                                                                               
 X                                                                                     X
 X                                                                               XXXXXXX
 X                                                                               X     X
-X—-LAB—                                                                         ?     X     
-X      |                                                                        X  G  X
-X      |                                                                        X     X
+X                                                                                     X     
+X—||-——————--                                                                   X  ?  X
+X LABORATORY|                                                                   X     X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

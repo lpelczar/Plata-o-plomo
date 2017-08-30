@@ -1,4 +1,4 @@
-def player_starting_stats(starting_bonus, capacity=200, damage=10, armor=15, cash=1000):
+def player_starting_bonus(starting_bonus, capacity=200, damage=10, armor=15, cash=1000):
 
     player_stats = [capacity, damage, armor, cash]
 

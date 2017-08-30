@@ -27,7 +27,7 @@ def player_starting_position(y, x, board):
 
 def player_moving(y, x, board):
 
-    wall = ['X', 'A']
+    wall = ['X', 'A', '-', '|']
     position = ()
 
     while True:
@@ -85,12 +85,12 @@ def main():
     introduction.menu_select()
     starting_bonus = introduction.character_creation()
 
-    player_stats = player.player_starting_stats(starting_bonus)
-    cash = player_stats[3]
+    player_starting_stats = player.player_starting_bonus(starting_bonus)
 
     map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(23, 50, map1)
-    print_board.print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
+    print_board.print_map(position[0], position[1], map1, player_starting_stats, starting_bonus[0])
+    player_stats = player_starting_stats
 
     inventory = {}
     inventory = backpack.backpack_items(starting_bonus[1], inventory)
@@ -99,7 +99,7 @@ def main():
     while True:
         position = player_moving(position[0], position[1], map1)
         print_board.print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
-        interactions.take_quest(position[0], position[1], map1, cash)
+        player_stats = interactions.take_quest(position[0], position[1], map1, player_stats)
 
 
 if __name__ == '__main__':
