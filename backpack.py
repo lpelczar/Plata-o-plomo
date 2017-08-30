@@ -47,6 +47,11 @@ def display_backpack(backpack):
                 print('|', (str(line_number)+'.'), formated_line, '|')
                 line_number += 1
 
+            elif value[2] == 'quest_item' or value[2] == 'drugs':
+                formated_line = '{:>5} {:<5} {:>10} {:>10} {:<3}'.format('Power:', value[0], key, 'Weight:', value[1])
+                print('|', (str(line_number)+'.'), formated_line, '|')
+                line_number += 1
+
         print('| ', table_line*(len(formated_line)+1), ' |')
 
     except:
@@ -55,6 +60,14 @@ def display_backpack(backpack):
 
 def save_backpack_to_file(backpack):
 
+    with open('backpack.txt', 'w') as f:
+        w = csv.writer(f, delimiter=',')
+
+        for key, value in backpack.items():
+            w.writerow((key, value[0], value[1], value[2]))
+
+
+def add_item_to_backpack_file(backpack):
     with open('backpack.txt', 'a') as f:
         w = csv.writer(f, delimiter=',')
 
