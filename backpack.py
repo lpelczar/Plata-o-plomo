@@ -50,12 +50,12 @@ def display_backpack(backpack):
         print('| ', table_line*(len(formated_line)+1), ' |')
 
     except:
-        print('None in backpack')
+        print('Empty')
 
 
 def save_backpack_to_file(backpack):
 
-    with open('backpack.txt', 'w') as f:
+    with open('backpack.txt', 'a') as f:
         w = csv.writer(f, delimiter=',')
 
         for key, value in backpack.items():
