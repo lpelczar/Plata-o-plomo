@@ -1,6 +1,7 @@
 import os
 import random
 import time
+import sys
 
 
 def clear_console():
@@ -29,7 +30,7 @@ def play_cold_warm():
         user_guesses -= 1
         if user_guesses == 0:
             display_screen('lose.txt')
-            break
+            sys.exit()
 
 
 def get_user_input():

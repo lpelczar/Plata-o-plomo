@@ -1,13 +1,16 @@
 import backpack
 import tnt
 import time
+import boss
+import sys
+enemies_killed = 0
 
 
 def take_quest(y, x, board, player_stats):
-    interactions = ['?', '|']
+    interactions = ['?', '|', 'E']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
-        interaction = (board[y+1][x], board[y-1][x])
+        interaction = (board[y][x+1], board[y][x-1])
         check_encounter(player_stats, interaction)
 
     elif board[y+1][x] in interactions or board[y-1][x] in interactions:
@@ -30,6 +33,45 @@ def check_encounter(player_stats, interaction):
     elif interaction[0] == '|' or interaction[1] == '|':
         repair_lab()
 
+    elif interaction[0] == 'E' or interaction[1] == 'E':
+        fight_enemy(player_stats)
+
+    return player_stats
+
+
+def fight_enemy(player_stats):
+    global enemies_killed
+    enemy_life = 100
+    yes = ['YES', 'yes', 'Yes']
+    no = ['NO', 'no', 'No']
+    print('You have encounter an enemy.')
+    while True:
+        answer = input('Enter "attack" to attack or "run" to run away: ')
+        if answer == 'attack':
+            if player_stats[1] <= 10:
+                enemy_life -= 20
+                player_stats[2] -= 1
+                print('You hitted for 20. You lost 1 armor. Enemy life:', enemy_life, 'Your armor:', player_stats[2])
+            elif player_stats[1] > 10 and player_stats[1] <= 30:
+                enemy_life -= 30
+                player_stats[2] -= 1
+                print('You hitted for 30. You lost 1 armor Enemy life:', enemy_life, 'Your armor:', player_stats[2])
+            else:
+                enemy_life -= 40
+                player_stats[2] -= 1
+                print('You hitted for 40. You lost 1 armor Enemy life:', enemy_life, 'Your armor:', player_stats[2])
+            if enemy_life <= 0:
+                print('You won!')
+                enemies_killed += 1
+                time.sleep(0.5)
+                break
+            if player_stats[2] <= 0:
+                boss.display_screen('lose.txt')
+                sys.exit()
+        if answer == 'run':
+            print('Run you fool!!!')
+            time.sleep(0.5)
+            break
     return player_stats
 
 
