@@ -2,9 +2,11 @@ import os
 import sys
 import tty
 import termios
+import print_board
 import player
 import backpack
 import introduction
+import interactions
 
 
 def read_map_from_file(filename):
@@ -65,16 +67,6 @@ def player_moving(y, x, board):
     return position
 
 
-def print_map(y, x, board, player_stats, appearance):
-    os.system('clear')
-    board[y][x] = appearance
-
-    for row in board:
-        print(''.join(row))
-
-    player.display_stats(player_stats)  # Printuje staty gracza pod mapa
-
-
 def getch():
 
     fd = sys.stdin.fileno()
@@ -89,22 +81,25 @@ def getch():
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
+
     introduction.menu_select()
     starting_bonus = introduction.character_creation()
+
     player_stats = player.player_starting_stats(starting_bonus)
+    cash = player_stats[3]
 
     map1 = read_map_from_file('Map1.txt')
-    position = player_starting_position(5, 5, map1)
-    print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
+    position = player_starting_position(23, 50, map1)
+    print_board.print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
 
-    inventory = backpack.open_backpack_file()
+    inventory = {}
     inventory = backpack.backpack_items(starting_bonus[1], inventory)
     backpack.save_backpack_to_file(inventory)
 
     while True:
         position = player_moving(position[0], position[1], map1)
-        print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
-        # Interactions.shop(position[0], position[1], map1)
+        print_board.print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
+        interactions.take_quest(position[0], position[1], map1, cash)
 
 
 if __name__ == '__main__':
