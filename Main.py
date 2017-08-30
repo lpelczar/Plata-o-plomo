@@ -66,9 +66,9 @@ def player_moving(y, x, board):
     return position
 
 
-def print_map(y, x, board, player_stats):
+def print_map(y, x, board, player_stats, appearance):
     os.system('clear')
-    board[y][x] = '@'
+    board[y][x] = appearance
 
     for row in board:
         print(''.join(row))
@@ -91,16 +91,17 @@ def getch():
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     introduction.menu_select()
-    player_stats = player.player_starting_stats()
+    starting_bonus = introduction.character_creation()
+    player_stats = player.player_starting_stats(starting_bonus)
 
     map1 = read_map_from_file('Map1.txt')
     position = player_starting_position(5, 5, map1)
-    print_map(position[0], position[1], map1, player_stats)
+    print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
 
     while True:
 
         position = player_moving(position[0], position[1], map1)
-        print_map(position[0], position[1], map1, player_stats)
+        print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
         # Interactions.shop(position[0], position[1], map1)
 
 
