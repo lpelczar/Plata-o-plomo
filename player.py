@@ -1,12 +1,6 @@
-import introduction
-
-
-def player_starting_stats(capacity=200, damage=10, armor=15, cash=1000):
+def player_starting_stats(starting_bonus, capacity=200, damage=10, armor=15, cash=1000):
 
     player_stats = [capacity, damage, armor, cash]
-    starting_bonus = introduction.character_creation()
-    print(starting_bonus)
-    print(player_stats)
 
     if starting_bonus[1] == 'gun':
         player_stats[1] += 5
