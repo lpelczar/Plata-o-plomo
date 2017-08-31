@@ -54,44 +54,19 @@ def explode(y, x, board, player_stats):
     print_board.print_map(y, x, board, player_stats, '@')
 
     blow_y = 1
-    # while blow_y != 3:
-    #     for i in range(7, 14):
-    #         board[y][x+i] = '*'
-    #         board[y+blow_y][x+i] = '*'
-    #         board[y-blow_y][x+i] = '*'
-    #         board[y][(x+14)-i] = '*'
-    #         board[y+blow_y][(x+14)-i] = '*'
-    #         board[y-blow_y][(x+14)-i] = '*'
-    #         print_board.print_map(y, x, board, player_stats, '@')
-    #         time.sleep(0.05)
-    #     blow_y += 1
-    #
-    clear_y = 1
-    # while clear_y != 3:
-    #     for i in range(7, 14):
-    #         board[y][x+i] = ' '
-    #         board[y+clear_y][x+i] = ' '
-    #         board[y-clear_y][x+i] = ' '
-    #         board[y][(x+14)-i] = ' '
-    #         board[y+clear_y][(x+14)-i] = ' '
-    #         board[y-clear_y][(x+14)-i] = ' '
-    #         print_board.print_map(y, x, board, player_stats, '@')
-    #         time.sleep(0.05)
-    #     clear_y += 1
-    blow_y = 1
     while blow_y != 3:
         for i in range(7, 14):
-            board[y][x+i] = '*'  # srodek prawo
+            board[y][x+i] = '*'
 
-            board[y+blow_y][x+i] = '*'  # prawy gorny
-            board[y-blow_y][(x+14)-i] = '*'  # lewy dolny
+            board[y+blow_y][x+i] = '*'
+            board[y-blow_y][(x+14)-i] = '*'
             print_board.print_map(y, x, board, player_stats, '@')
 
             for i in range(7, 14):
-                board[y+blow_y][(x+14)-i] = '*'  # lewy gorny
-                board[y-blow_y][x+i] = '*'  # prawy dolny
+                board[y+blow_y][(x+14)-i] = '*'
+                board[y-blow_y][x+i] = '*'
 
-                board[y][(x+14)-i] = '*'  # srodek lewo
+                board[y][(x+14)-i] = '*'
 
             print_board.print_map(y, x, board, player_stats, '@')
 

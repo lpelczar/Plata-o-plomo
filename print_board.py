@@ -36,8 +36,6 @@ def color_map(row):
     format_explode = ''.join([colors['explode'][0], '*', colors['explode'][1]])
     format_entrance = ''.join([colors['entrance'][0], 'I', colors['entrance'][1]])
 
-    # row = [format_wall if x == 'X' else x for x in row]
-
     row2 = []
     for x in row:
         if x == 'X':
