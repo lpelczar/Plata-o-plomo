@@ -32,20 +32,25 @@ def play_cold_warm():
     user_guesses = 10
     correct_answer = generate_unique_number()
     print(correct_answer)
+
     while user_guesses > 0:
         user_input = get_user_input()
         feedback = compare_user_answer(user_input, correct_answer)
         print('Hint: ', end='')
+
         for i in feedback:
             print(i, end=' ')
         print('   Guesses left:', user_guesses - 1)
+
         if feedback == ['hot', 'hot', 'hot']:
             display_screen('win.txt')
             score = user_guesses * 111
             highscore.add_score_to_file(score)
             highscore.display_highscore()
-            break
+            time.sleep(3)
+            sys.exit()
         user_guesses -= 1
+
         if user_guesses == 0:
             display_screen('lose.txt')
             sys.exit()
@@ -120,12 +125,15 @@ def start_fight():
     """
     clear_console()
     display_boss()
+
     while True:
         answer = input('Pershing: Pablo mi amigo! We were always good friends. Now you want to fight with me? ').lower()
+
         if answer == 'yes':
             print('Pershing: As you wish, lets play cold/warm, I thought of 3 unique digit number, you have 10 guesses to guess it!')
             play_cold_warm()
             break
+
         if answer == 'no':
             print('Pershing: I thought so! Go home Pablo!')
             time.sleep(2)

@@ -1,6 +1,3 @@
-import boss
-import random
-import csv
 from operator import itemgetter
 
 
@@ -39,7 +36,7 @@ def add_score_to_file(score):
 
     for i in range(len(highscore)):
         highscore[i][1] = int(highscore[i][1])
-    highscore = sorted(highscore, key=itemgetter(1))
+    highscore = sorted(highscore, key=itemgetter(1), reverse=True)
     save_highscore_to_file(highscore)
 
 
