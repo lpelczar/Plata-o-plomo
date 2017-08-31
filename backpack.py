@@ -47,7 +47,7 @@ def display_backpack(backpack):
                 print('|', (str(line_number)+'.'), formated_line, '|')
                 line_number += 1
 
-            elif value[2] == 'quest_item' or value[2] == 'drugs':
+            elif value[2] == 'quest_item' or value[2] == 'drugs' or value[2] == 'explode materials':
                 formated_line = '{:>5} {:<5} {:>10} {:>10} {:<3}'.format('Power:', value[0], key, 'Weight:', value[1])
                 print('|', (str(line_number)+'.'), formated_line, '|')
                 line_number += 1
