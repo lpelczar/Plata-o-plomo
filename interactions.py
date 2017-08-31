@@ -41,7 +41,7 @@ def take_quest(y, x, board, player_stats):
 
 def check_encounter(player_stats, interaction):
     if interaction[0] == '?' or interaction[1] == '?':
-        quest_1(player_stats)
+        find_lag_part(player_stats)
         interaction = (' ', ' ')
 
     elif interaction[0] == '|' or interaction[1] == '|':
@@ -143,7 +143,7 @@ def guns_shop(player_stats):
             break
 
 
-def quest_1(player_stats):
+def find_lag_part(player_stats):
     inventory = {}
     print('PABLO: Hola José Rodríguez Gacha!')
     print('GACHA: Welcome Pablo!\nIf you want take a lost part for yor lab, you can buy it here. Its cost 800 $!')
@@ -152,10 +152,13 @@ def quest_1(player_stats):
         answer = input('Do you want to buy it Pablo?\n').lower()
 
         if answer == 'yes':
-            player_stats[3] -= 800
-            inventory['lab_part'] = (0, 100, 'quest_item')
-            backpack.add_item_to_backpack_file(inventory)
-            break
+            if player_stats[3] > 800:
+                player_stats[3] -= 800
+                inventory['lab_part'] = (0, 100, 'quest_item')
+                backpack.add_item_to_backpack_file(inventory)
+                break
+            else:
+                print('GACHA: Come back with money Pablo!')
 
         elif answer == 'no':
             break
@@ -236,12 +239,22 @@ def collect_TNT(player_stats):
         ask_for_buy = input('FABIO OCHOA: You looking for some explode materials Pablo?').lower()
 
         if ask_for_buy == 'yes':
-            TNT_price = 500
+            TNT_price = 900
 
-            if player_stats[3] > TNT_price:  # Zmienic na 2000, wersja do testow
+            if player_stats[3] > TNT_price:
                 player_stats[3] -= TNT_price
-                inventory['TNT'] = (1500, 250, 'explode materials')
-                break
+                if 'TNT' in inventory:
+                    amount_of_TNT = inventory['TNT'][1]
+                    amount_of_TNT += amount_of_TNT
+                    inventory['TNT'] = (1500, amount_of_TNT, 'explode materials')
+                    time.sleep(1)
+                    print('YOU GET TNT! NOW YOU CAN HAVE SOME FUN!')
+                    break
+                else:
+                    inventory['TNT'] = (1500, 80, 'explode materials')
+                    time.sleep(1)
+                    print('YOU GET TNT! NOW YOU CAN HAVE SOME FUN!')
+                    break
 
             else:
                 print('FABIO OCHOA: Im sorry Pablo but you dont have enough money')

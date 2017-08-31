@@ -9,12 +9,20 @@ def ask_explode_intent(y, x, board, player_stats):
     while True:
         answer = input('Do you want to blow up this wall? ').lower()
         if answer == 'yes' and 'TNT' in inventory:
-            explode(y, x, board, player_stats)
-            break
+            if inventory['TNT'][1] == 160:
+                explode(y, x, board, player_stats)
+                amount_of_TNT = inventory['TNT'][1]
+                amount_of_TNT -= 80
+                inventory['TNT'] = (1500, amount_of_TNT, 'explode materials')
+                break
+            else:
+                print('PABLO: F*CK! I need one more TNT to blow something in Warsaw!')
+                break
         else:
-            print('PABLO: F*CK! I dont have TNT to blow up this wall!')
+            print('PABLO: F*CK! I dont have TNT to blow up this wall! And another one to blow something in Warsaw!')
             time.sleep(2)
             break
+    backpack.save_backpack_to_file(inventory)
 
 
 def explode(y, x, board, player_stats):
