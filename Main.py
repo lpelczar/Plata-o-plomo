@@ -4,7 +4,6 @@ import player
 import backpack
 import introduction
 import interactions
-import change_level
 import load_map
 import sys
 import key_getch
@@ -18,7 +17,7 @@ def player_starting_position(y, x, board):
 
 def player_moving(y, x, board):
 
-    wall = ['X', 'A', '_', '|', '=']
+    wall = ['X', 'A', '_', '|', '=', 'I']
     position = ()
 
     while True:
@@ -79,6 +78,11 @@ def main():
         position = player_moving(position[0], position[1], game_map)
         print_board.print_map(position[0], position[1], game_map, player_stats, starting_bonus[0])
         position, player_stats = interactions.take_quest(position[0], position[1], game_map, player_stats)
+
+        if player_stats[5] is True:
+            game_map = load_map.read_map_from_file('Map2.txt')
+            position = player_starting_position(10, 2, game_map)
+            player_stats[5] = False
 
 
 if __name__ == '__main__':

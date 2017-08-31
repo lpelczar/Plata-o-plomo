@@ -4,7 +4,7 @@ import time
 import random
 import boss
 import sys
-import change_level
+import load_map
 enemies_killed = 0
 
 
@@ -54,7 +54,7 @@ def check_encounter(player_stats, interaction):
         collect_TNT(player_stats)
 
     elif interaction[0] == 'I' or interaction[1] == 'I':
-        change_level.next_level()
+        load_map.next_level(player_stats)
 
     return player_stats, interaction
 
