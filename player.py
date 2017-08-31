@@ -21,6 +21,9 @@ def display_stats(player_stats):
     print(' _-', ' Pablo Escobar ', '-_')
 
     for name, line in zip(stats_name, player_stats):
+        if name == 'enemies_killed':
+            continue
+
         formated_line = '{:<10} {:<6}'.format(name, line)
         if name == 'Cash:':
             formated_line = '{:<10} {:<7}'.format(name, str(line)+' $')

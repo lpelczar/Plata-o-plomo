@@ -8,7 +8,7 @@ enemies_killed = 0
 
 
 def take_quest(y, x, board, player_stats):
-    interactions = ['?', '|', 'E']
+    interactions = ['?', '|', 'E', '$']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
         interaction = (board[y][x+1], board[y][x-1])
@@ -81,12 +81,11 @@ def fight_enemy(player_stats):
 
 def guns_shop(player_stats):
     inventory = {}
-    yes = ['YES', 'yes', 'Yes']
     no = ['NO', 'no', 'No']
     print('Welcome to my shop Pablo!')
     while True:
-        buy = input('Do you want to buy something? ')
-        if buy in yes:
+        buy = input('Do you want to buy something? ').lower()
+        if buy == 'yes':
             while True:
                 answer = input('What do you want to buy? I can offer AK-47 and M4-A1: ')
                 if answer == 'AK-47':
@@ -132,7 +131,6 @@ def quest_1(player_stats):
 
 def repair_lab():
     inventory = backpack.open_backpack_file()
-    print(inventory)
 
     if 'lab_part' in inventory:
         print('PABLO: Finally my laboratorium is work fine!\n Now you can make COCAINE! Lets get to work amigos!!!')
@@ -142,11 +140,10 @@ def repair_lab():
         print('YOU EARN 20KG COCAINE!')
 
         inventory['COCAINE'] = (0, 20, 'drugs')
-        print(inventory)
         backpack.save_backpack_to_file(inventory)
 
     elif 'lab_part' not in inventory:
-        print('PABLO: My laboratorium is broken i need to find lab part to fix it!')
+        print('PABLO: My laboratorium is destroied, I need to find lab part to fix it!')
 
 
 def sell_drugs(player_stats):
@@ -155,8 +152,38 @@ def sell_drugs(player_stats):
 
     while True:
         if 'COCAINE' in inventory:
-            answer = int(input('BASTARDS: Hola Pablo! Ofcourse we need it! Tell me the price for 1kg?\n'))
-            price = random.randint(100, 300, 50)
-            if answer > 500:
+            price_cocaine = int(input('BASTARDS: Hola Pablo! Ofcourse we need it! Tell me the price for 1kg?\n'))
+
+            if price_cocaine > 500:
+                price = random.randint(100, 300)
                 print('\nBASTARDS: Thats not fair Pablo! I can pay', price, '$.')
-                inventory['COCAINE']
+                amount = random.randint(1, 5)
+                print('And I want ', amount, 'kg of COCAINE.')
+                amount_answer = input('Is it fine for you amoigo?!').lower()
+
+                if amount_answer == 'yes':
+                    amount_of_cocain = inventory.get('COCAINE')
+                    cocain_left = amount_of_cocain[1] - amount
+                    print(cocain_left)
+                    inventory['COCAINE'] = (0, cocain_left, 'drugs')
+                    player_stats[3] += price * amount
+                    break
+
+                else:
+                    print('Plata o plomo!')
+                    break
+            else:
+                print('BASTARDS: Ok Pablo, this is fair price! Lets trade.')
+                amount_of_cocain = inventory.get('COCAINE')
+                amount = random.randint(1, 5)
+                print('I want ', amount, 'kg of COCAINE.')
+                cocain_left = amount_of_cocain[1] - amount
+                print(cocain_left)
+                inventory['COCAINE'] = (0, cocain_left, 'drugs')
+                player_stats[3] += price_cocaine * amount
+                break
+
+        else:
+            print('BASTARDS: You dont have COCAINE Pablo, hahahah! What happend with you RAT!')
+            break
+        backpack.save_backpack_to_file(inventory)
