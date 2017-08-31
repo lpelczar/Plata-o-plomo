@@ -33,6 +33,9 @@ def take_quest(y, x, board, player_stats):
     elif board[y][x+1] == '(':
         tnt.ask_explode_intent(y, x, board, player_stats)
 
+    elif board[y][x+1] == '<':
+        tnt.ask_explode_intent(y, x, board, player_stats)
+
     elif board[y-1][x] == '=':
         guns_shop(player_stats)
 
@@ -193,9 +196,11 @@ def find_lab_part(player_stats):
                 player_stats[3] -= 800
                 inventory['lab_part'] = (0, 100, 'quest_item')
                 backpack.add_item_to_backpack_file(inventory)
+                print('YOU GOT LAB PART, NOW YOU CAN FIX YOU LABORATORY!')
                 break
             else:
                 print('GACHA: Come back with money Pablo!')
+                break
 
         elif answer == 'no':
             break
@@ -238,37 +243,41 @@ def sell_drugs(player_stats):
 
     while True:
         if 'COCAINE' in inventory:
-            price_cocaine = int(input('BASTARDS: Hola Pablo! Ofcourse we need it! Tell me the price for 1kg?\n'))
+            try:
+                price_cocaine = int(input('BASTARDS: Hola Pablo! Ofcourse we need it! Tell me the price for 1kg?\n'))
 
-            if price_cocaine > 500:
-                price = random.randint(100, 300)
-                print('\nBASTARDS: Thats not fair Pablo! I can pay', price, '$.')
-                amount = random.randint(1, 5)
-                print('And I want ', amount, 'kg of COCAINE.')
-                amount_answer = input('Is it fine for you amoigo?!').lower()
+                if price_cocaine > 500:
+                    price = random.randint(100, 300)
+                    print('\nBASTARDS: Thats not fair Pablo! I can pay', price, '$.')
+                    amount = random.randint(1, 5)
+                    print('And I want ', amount, 'kg of COCAINE.')
+                    amount_answer = input('Is it fine for you amoigo?!').lower()
 
-                if amount_answer == 'yes':
+                    if amount_answer == 'yes':
+                        amount_of_cocain = inventory.get('COCAINE')
+                        cocain_left = amount_of_cocain[1] - amount
+                        inventory['COCAINE'] = (0, cocain_left, 'drugs')
+                        player_stats[3] += price * amount
+                        break
+
+                    else:
+                        print('Plata o plomo!')
+                        break
+                else:
+                    print('BASTARDS: Ok Pablo, this is fair price! Lets trade.')
+
                     amount_of_cocain = inventory.get('COCAINE')
+                    amount = random.randint(1, 5)
+
+                    print('I want ', amount, 'kg of COCAINE.')
+
                     cocain_left = amount_of_cocain[1] - amount
                     inventory['COCAINE'] = (0, cocain_left, 'drugs')
-                    player_stats[3] += price * amount
+                    player_stats[3] += price_cocaine * amount
                     break
 
-                else:
-                    print('Plata o plomo!')
-                    break
-            else:
-                print('BASTARDS: Ok Pablo, this is fair price! Lets trade.')
-
-                amount_of_cocain = inventory.get('COCAINE')
-                amount = random.randint(1, 5)
-
-                print('I want ', amount, 'kg of COCAINE.')
-
-                cocain_left = amount_of_cocain[1] - amount
-                inventory['COCAINE'] = (0, cocain_left, 'drugs')
-                player_stats[3] += price_cocaine * amount
-                break
+            except ValueError:
+                continue
 
         else:
             print('BASTARDS: You dont have COCAINE Pablo, hahahah! What happend with you RAT!')
@@ -291,10 +300,10 @@ def collect_TNT(player_stats):
 
     while True:
 
-        ask_for_buy = input('FABIO OCHOA: You looking for some explode materials Pablo?').lower()
+        ask_for_buy = input('FABIO OCHOA: You looking for some explode materials Pablo?\nPABLO: ').lower()
 
         if ask_for_buy == 'yes':
-            TNT_price = 900
+            TNT_price = 800
 
             if player_stats[3] > TNT_price:
                 player_stats[3] -= TNT_price
