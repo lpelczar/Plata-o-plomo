@@ -20,6 +20,6 @@ X                                                                               
 X                          XXXX  XXX                                            XXXXXXX
 X                          X       X                                            X     X
 X                          X       X                                                  X
-X______||____              X  $    X                                            X  ?  X
+X______||____              X  ?    X                                            X  $  X
 X LABORATORYX              X       X                                            X     X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
