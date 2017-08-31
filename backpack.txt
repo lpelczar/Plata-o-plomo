@@ -1,1 +1,2 @@
 Glock,5,30,weapon
+lab_part,0,100,quest_item

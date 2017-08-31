@@ -78,7 +78,7 @@ def main():
     while True:
         position = player_moving(position[0], position[1], game_map)
         print_board.print_map(position[0], position[1], game_map, player_stats, starting_bonus[0])
-        player_stats = interactions.take_quest(position[0], position[1], game_map, player_stats)
+        position, player_stats = interactions.take_quest(position[0], position[1], game_map, player_stats)
 
 
 if __name__ == '__main__':
