@@ -30,41 +30,41 @@ def player_moving(y, x, board):
     Returns:
         position: tuple with user current position
     """
-    wall = ['X', 'A', '_', '|', '=', ']', 'l', 'I']
+    wall = ['X', 'A', '_', '|', '=', ']', 'l', 'I', '(', ')']
     position = ()
 
     while True:
-        ch = key_getch.getch()
+        char = key_getch.getch()
 
-        if ch == 'd' and board[y][x+1] not in wall:
+        if char == 'd' and board[y][x+1] not in wall:
             board[y][x] = ' '
             x = x + 1
             position = (y, x)
             break
 
-        elif ch == 'a' and board[y][x-1] not in wall:
+        elif char == 'a' and board[y][x-1] not in wall:
             board[y][x] = ' '
             x = x - 1
             position = (y, x)
             break
 
-        elif ch == 'w' and board[y-1][x] not in wall:
+        elif char == 'w' and board[y-1][x] not in wall:
             board[y][x] = ' '
             y = y - 1
             position = (y, x)
             break
 
-        elif ch == 's' and board[y+1][x] not in wall:
+        elif char == 's' and board[y+1][x] not in wall:
             board[y][x] = ' '
             y = y + 1
             position = (y, x)
             break
 
-        elif ch == 'b':
+        elif char == 'b':
             inventory = backpack.open_backpack_file()
             backpack.display_backpack(inventory)
 
-        elif ch == 'q':
+        elif char == 'q':
             sys.exit()
 
     return position

@@ -5,15 +5,15 @@ X            X                                                                  
 XXXXXX=XXXXXXX                            E                                           X
 X                                                                                     X
 X                                                 E                                   X
-X                                         E                                           X
-X                                                                                     X
+X                                         E                                           XXXXXXXXXX
+X                                                                                     XXXXXXXXXXXXX
 X                                                                              XXXXXXXXXXXXXXXXXXXXXXX
 ]                                                                              X              l      X
-]                                                                              (              l BOSS X
+]                                                                              <              l BOSS X
 ]                                                                              X              l      X
 ]                                                                              XXXXXXXXXXXXXXXXXXXXXXX
-]                                                                                     X
-X                                                                                     X
+]                                                                                     XXXXXXXXXXXXX
+X                                                                                     XXXXXXXXXX
 X                                                                                     X
 X                                                                                     X
 X                                                                                     X
