@@ -79,7 +79,7 @@ def main():
     player_starting_stats = player.player_starting_bonus(starting_bonus)
 
     game_map = load_map.read_map_from_file('Map1.txt')
-    position = player_starting_position(23, 50, game_map)
+    position = player_starting_position(21, 7, game_map)
     print_board.print_map(position[0], position[1], game_map, player_starting_stats, starting_bonus[0])
     player_stats = player_starting_stats
 
