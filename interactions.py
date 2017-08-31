@@ -88,6 +88,7 @@ def fight_enemy(player_stats, defeat):
                 print('You won!')
                 defeat = True
                 player_stats[4] += 1
+                player_stats[3] += 100
                 time.sleep(0.5)
                 break
             if player_stats[2] <= 0:
