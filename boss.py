@@ -69,17 +69,15 @@ def generate_unique_number():
 
 
 def start_fight():
-    yes = ['YES', 'yes', 'Yes']
-    no = ['NO', 'no', 'No']
     clear_console()
     display_boss()
     while True:
-        answer = input('Pershing: Pablo mi amigo! We were always good friends. Now you want to fight with me? ')
-        if answer in yes:
+        answer = input('Pershing: Pablo mi amigo! We were always good friends. Now you want to fight with me? ').lower()
+        if answer == 'yes':
             print('Pershing: As you wish, lets play cold/warm, I thought of 3 unique digit number, you have 10 guesses to guess it!')
             play_cold_warm()
             break
-        if answer in no:
+        if answer == 'no':
             print('Pershing: I thought so! Go home Pablo!')
             time.sleep(2)
             display_screen('lose.txt')
