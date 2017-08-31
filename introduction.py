@@ -35,12 +35,12 @@ def menu_select():
         elif answer == '2':
             clear_console()
             display_screen('howtoplay_screen.txt')
-            input('\nPress any key to go back')
+            input('\nPress enter key to go back')
 
         elif answer == '3':
             clear_console()
             display_screen('about_screen.txt')
-            input('\nPress any key to go back')
+            input('\nPress enter key to go back')
 
 
 def character_creation():
