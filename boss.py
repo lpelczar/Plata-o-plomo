@@ -31,7 +31,6 @@ def play_cold_warm():
     """
     user_guesses = 10
     correct_answer = generate_unique_number()
-    print(correct_answer)
 
     while user_guesses > 0:
         user_input = get_user_input()
