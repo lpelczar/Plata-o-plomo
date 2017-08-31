@@ -1,8 +1,8 @@
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X            X                                                                        X
-X  GUN SHOP  X                                E                                       X
-X            X                                                                        X
-XXXXXX=XXXXXXX                            E                                           X
+X            X                                                          X             X
+X  GUN SHOP  X                                E                         X   WARSAW    X
+X            X                                                          X             X
+XXXXXX=XXXXXXX                            E                             XXXXXXXXXXXXXXXX
 X                                                                                     X
 X                                                 E                                   X
 X                                         E                                           XXXXXXXXXX
