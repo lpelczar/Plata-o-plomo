@@ -5,7 +5,6 @@ import random
 import boss
 import sys
 import change_level
-enemies_killed = 0
 
 
 def take_quest(y, x, board, player_stats):
@@ -28,6 +27,12 @@ def take_quest(y, x, board, player_stats):
 
     elif board[y-1][x] == '=':
         guns_shop(player_stats)
+
+    elif board[y][x+1] == 'l':
+        if player_stats[4] >= 4:
+            boss.start_fight()
+        else:
+            print('You need to kill 4 enemies to start fight with boss!')
 
     position = (y, x, board)
 
@@ -62,7 +67,6 @@ def check_encounter(player_stats, interaction):
 
 
 def fight_enemy(player_stats, defeat):
-    global enemies_killed
     enemy_life = 100
     print('You have encounter an enemy.')
     while True:
@@ -83,7 +87,7 @@ def fight_enemy(player_stats, defeat):
             if enemy_life <= 0:
                 print('You won!')
                 defeat = True
-                enemies_killed += 1
+                player_stats[4] += 1
                 time.sleep(0.5)
                 break
             if player_stats[2] <= 0:
@@ -98,15 +102,15 @@ def fight_enemy(player_stats, defeat):
 
 def guns_shop(player_stats):
     inventory = {}
-    print('Welcome to my shop Pablo!')
+    print('GUN MASTER: Welcome to my shop Pablo!')
 
     while True:
-        buy = input('Do you want to buy something? ').lower()
+        buy = input('GUN MASTER: Do you want to buy something? ').lower()
 
         if buy == 'yes':
 
             while True:
-                answer = input('What do you want to buy? I can offer AK-47 and M4-A1: ').upper()
+                answer = input('GUN MASTER: What do you want to buy? I can offer AK-47 and M4-A1: ').upper()
 
                 if answer == 'AK-47':
                     if player_stats[3] >= 200:
@@ -114,7 +118,7 @@ def guns_shop(player_stats):
                         player_stats[1] += 100
                         inventory['AK-47'] = (25, 100, 'weapon')
                         backpack.add_item_to_backpack_file(inventory)
-                        print('Item added to your inventory!')
+                        print('Take it!')
                         time.sleep(1)
                         break
                     else:
@@ -126,7 +130,7 @@ def guns_shop(player_stats):
                         player_stats[1] += 100
                         inventory['M4-A1'] = (30, 90, 'weapon')
                         backpack.add_item_to_backpack_file(inventory)
-                        print('Item added to your inventory!')
+                        print('Take it!')
                         time.sleep(1)
                         break
                     else:
