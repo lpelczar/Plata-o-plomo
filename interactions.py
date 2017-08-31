@@ -8,6 +8,14 @@ import load_map
 
 
 def take_quest(y, x, board, player_stats):
+    """Check if player is near any available quest and take it
+    Args:
+        y, x: current coordinates of the player
+        board: list of list representing our map
+        player_stats: list of user statistics
+    Returns:
+        position, player_stats
+    """
     interactions = ['?', '|', 'E', '$', ')', 'I']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
@@ -40,8 +48,16 @@ def take_quest(y, x, board, player_stats):
 
 
 def check_encounter(player_stats, interaction):
+    """Check which quest user has encountered
+    Args:
+        player_stats: list of user statistics
+        interaction: tuple with coordinates of the quest
+    Returns:
+        player_stats: list of user statistics
+        interaction: tuple with coordinates of the quest
+    """
     if interaction[0] == '?' or interaction[1] == '?':
-        find_lag_part(player_stats)
+        find_lab_part(player_stats)
         interaction = (' ', ' ')
 
     elif interaction[0] == '|' or interaction[1] == '|':
@@ -67,6 +83,14 @@ def check_encounter(player_stats, interaction):
 
 
 def fight_enemy(player_stats, defeat):
+    """Mechanics of fight with the enemy
+    Args:
+        player_stats: list of user statistics
+        defeat: True if user defeated an enemy
+    Returns:
+        player_stats: list of user statistics
+        defeat: True if user defeated an enemy
+    """
     enemy_life = 100
     print('You have encounter an enemy.')
     while True:
@@ -88,6 +112,7 @@ def fight_enemy(player_stats, defeat):
                 print('You won!')
                 defeat = True
                 player_stats[4] += 1
+                player_stats[3] += 100
                 time.sleep(0.5)
                 break
             if player_stats[2] <= 0:
@@ -101,6 +126,12 @@ def fight_enemy(player_stats, defeat):
 
 
 def guns_shop(player_stats):
+    """Quest with gun shop - you can buy items there
+    Args:
+        player_stats: list of user statistics
+    Returns:
+        none
+    """
     inventory = {}
     print('GUN MASTER: Welcome to my shop Pablo!')
 
@@ -143,7 +174,13 @@ def guns_shop(player_stats):
             break
 
 
-def find_lag_part(player_stats):
+def find_lab_part(player_stats):
+    """Quest with laboratory, you can buy lab part there
+    Args:
+        player_stats: list of user statistics
+    Returns:
+        none
+    """
     inventory = {}
     print('PABLO: Hola José Rodríguez Gacha!')
     print('GACHA: Welcome Pablo!\nIf you want take a lost part for yor lab, you can buy it here. Its cost 800 $!')
@@ -167,6 +204,12 @@ def find_lag_part(player_stats):
 
 
 def repair_lab():
+    """Quest with repairing the laboratory
+    Args:
+        none
+    Returns:
+        none
+    """
     inventory = backpack.open_backpack_file()
 
     if 'lab_part' in inventory:
@@ -180,10 +223,16 @@ def repair_lab():
         backpack.save_backpack_to_file(inventory)
 
     elif 'lab_part' not in inventory:
-        print('PABLO: My laboratorium is destroied, I need to find lab part to fix it!')
+        print('PABLO: My laboratorium is destroyed, I need to find lab part to fix it!')
 
 
 def sell_drugs(player_stats):
+    """Mechanics of selling drugs to the encountered people
+    Args:
+        player_stats: list of user statistics
+    Returns:
+        none
+    """
     inventory = backpack.open_backpack_file()
     print('PABLO: Hi bastards! Do you want to buy some COCAINE?')
 
@@ -228,6 +277,12 @@ def sell_drugs(player_stats):
 
 
 def collect_TNT(player_stats):
+    """Quest where you can buy the tnt bomb
+    Args:
+        player_stats: list of user statistics
+    Returns:
+        none
+    """
     inventory = backpack.open_backpack_file()
 
     print('FABIO OCHOA: Hola Pablo! Welcome in my shop!')

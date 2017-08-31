@@ -4,6 +4,14 @@ import backpack
 
 
 def ask_explode_intent(y, x, board, player_stats):
+    """Ask the user if he want to explode the wall
+    Args:
+        y, x: current coordinates of the player
+        board: list of list representing our map
+        player_stats: list of user statistics
+    Returns:
+        none
+    """
     inventory = backpack.open_backpack_file()
 
     while True:
@@ -26,6 +34,14 @@ def ask_explode_intent(y, x, board, player_stats):
 
 
 def explode(y, x, board, player_stats):
+    """Animate explosion
+    Args:
+        y, x: current coordinates of the player
+        board: list of list representing our map
+        player_stats: list of user statistics
+    Returns:
+        board: list of lists representing our board
+    """
     board[y][x+6] = '*'
     print_board.print_map(y, x, board, player_stats, '@')
 

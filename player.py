@@ -1,5 +1,16 @@
-def player_starting_bonus(starting_bonus, capacity=200, damage=10, armor=15, cash=1000, enemies_killed=0, level_2=0):
-
+def player_starting_bonus(starting_bonus, capacity=200, damage=10, armor=25, cash=1000, enemies_killed=0, level_2=0):
+    """Define player stats list and add starting bonus values to the list
+    Args:
+        starting_bonus: string with bonus which user choosed
+        capacity: capacity of the user backpack
+        damage: user damage
+        armor: user armor
+        cash: user cash
+        enemies_killed: enemies which user has killed
+        level_2: variable to access second level
+    Returns:
+        player_stats: list which contains every user stats
+    """
     player_stats = [capacity, damage, armor, cash, enemies_killed, level_2]
 
     if starting_bonus[1] == 'gun':
@@ -15,7 +26,12 @@ def player_starting_bonus(starting_bonus, capacity=200, damage=10, armor=15, cas
 
 
 def display_stats(player_stats):
-
+    """Display user stats in a pretty table
+    Args:
+        player_stats: list which contains every user stats
+    Returns:
+        none
+    """
     stats_name = ['Capacity:', 'Damage:', 'Armor:', 'Cash:']
     table_lenght = 10
     print(' _-', ' Pablo Escobar ', '-_')

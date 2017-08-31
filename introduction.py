@@ -6,13 +6,24 @@ def clear_console():
 
 
 def display_screen(filename):
+    """Read data from file and print it to the console
+    Args:
+        none
+    Returns:
+        none
+    """
     with open(filename) as f:
         read_data = f.read()
     print(read_data)
 
 
 def menu_select():
-
+    """Ask user to enter what he want to do in menu and display appropriate screen or start the game
+    Args:
+        none
+    Returns:
+        none
+    """
     while True:
         clear_console()
         display_screen('start_screen.txt')
@@ -33,6 +44,12 @@ def menu_select():
 
 
 def character_creation():
+    """Ask user to select his appearance and starting bonus and return it
+    Args:
+        none
+    Returns:
+        apperance: user apperance, starting bonus
+    """
     clear_console()
     symbols = ['@', '#', '&']
     display_screen('intro.txt')

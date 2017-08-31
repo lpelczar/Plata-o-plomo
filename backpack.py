@@ -3,6 +3,12 @@ import os
 
 
 def open_backpack_file():
+    """Open backpack from file and append items to backpack dictionary
+    Args:
+        none
+    Returns:
+        backpack: dictionary with items read from file
+    """
     backpack = {}
     with open('backpack.txt', 'r') as f:
         f = csv.reader(f, delimiter=',')
@@ -17,7 +23,13 @@ def open_backpack_file():
 
 
 def backpack_items(starting_item, backpack):
-
+    """Add starting items to backpack dictionary
+    Args:
+        starting_item: item user choosed at the beginning of the game
+        backpack: dictionary with user items
+    Returns:
+        backpack: dictionary with user items
+    """
     if starting_item == 'gun':
         backpack['Glock'] = (5, 30, 'weapon')
 
@@ -28,7 +40,12 @@ def backpack_items(starting_item, backpack):
 
 
 def display_backpack(backpack):
-
+    """Print backpack dictionary in a pretty table
+    Args:
+        backpack: dictionary with user items
+    Returns:
+        none
+    """
     os.system('clear')
     table_line = '_'
     table_length = 16
@@ -59,7 +76,12 @@ def display_backpack(backpack):
 
 
 def save_backpack_to_file(backpack):
-
+    """Open file and save values of backpack dictionary to the file
+    Args:
+        backpack: dictionary with user items
+    Returns:
+        none
+    """
     with open('backpack.txt', 'w') as f:
         w = csv.writer(f, delimiter=',')
 
@@ -68,6 +90,12 @@ def save_backpack_to_file(backpack):
 
 
 def add_item_to_backpack_file(backpack):
+    """Append item at the end of the file
+    Args:
+        backpack: dictionary with user items
+    Returns:
+        none
+    """
     with open('backpack.txt', 'a') as f:
         w = csv.writer(f, delimiter=',')
 

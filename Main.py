@@ -10,13 +10,26 @@ import key_getch
 
 
 def player_starting_position(y, x, board):
+    """Set player on a starting posiotion
+    Args:
+        y, x: current coordinates of the player
+        board: list of lists representing our map
+    Returns:
+        position: tuple with user current position
+    """
     position = (y, x)
 
     return position
 
 
 def player_moving(y, x, board):
-
+    """Move the player and chceck collisions with the walls
+    Args:
+        y, x: current coordinates of the player
+        board: list of lists representing our map
+    Returns:
+        position: tuple with user current position
+    """
     wall = ['X', 'A', '_', '|', '=', ']', 'l', 'I']
     position = ()
 
