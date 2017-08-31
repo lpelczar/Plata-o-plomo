@@ -46,8 +46,6 @@ def check_encounter(player_stats, interaction):
 def fight_enemy(player_stats):
     global enemies_killed
     enemy_life = 100
-    yes = ['YES', 'yes', 'Yes']
-    no = ['NO', 'no', 'No']
     print('You have encounter an enemy.')
     while True:
         answer = input('Enter "attack" to attack or "run" to run away: ')
@@ -81,13 +79,16 @@ def fight_enemy(player_stats):
 
 def guns_shop(player_stats):
     inventory = {}
-    no = ['NO', 'no', 'No']
     print('Welcome to my shop Pablo!')
+
     while True:
         buy = input('Do you want to buy something? ').lower()
+
         if buy == 'yes':
+
             while True:
                 answer = input('What do you want to buy? I can offer AK-47 and M4-A1: ')
+
                 if answer == 'AK-47':
                     player_stats[3] -= 200
                     player_stats[1] += 100
@@ -96,6 +97,7 @@ def guns_shop(player_stats):
                     print('Item added to your inventory!')
                     time.sleep(1)
                     break
+
                 elif answer == 'M4-A1':
                     player_stats[3] -= 200
                     player_stats[1] += 100
@@ -105,7 +107,8 @@ def guns_shop(player_stats):
                     time.sleep(1)
                     break
             break
-        elif buy in no:
+
+        elif buy == 'no':
             break
 
 
@@ -115,7 +118,7 @@ def quest_1(player_stats):
     print('GACHA: Welcome Pablo!\nIf you want take a lost part for yor lab, you can buy it here. Its cost 800 $!')
 
     while True:
-        answer = input('Do you want to buy it Pablo?\n')
+        answer = input('Do you want to buy it Pablo?\n').lower()
 
         if answer == 'yes':
             player_stats[3] -= 800
