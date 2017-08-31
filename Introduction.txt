@@ -1,0 +1,66 @@
+Pablo Escobar lost in SanEscobar
+
+You are one of the famous drug dealer on the world.
+But you lost in mysterious place it's called SanEscobar!
+Your main quest is to defeat Pruszków cartel, and their boss Pershing!!!
+But before you will be ready to this strange fight you need to collects a lot of $ and guns.
+You can earn cash for selling drugs on the street or smuggle drugs to other towns. This journey won't be easy for you!
+
+
+
+
+Szmuglowanie koksu z SanEscobar do Warszawy.
+Dwa Miasta: San Escobar, Warszawa (mapy)
+
+Cel pierwszej mapy:
+1. Zebrac Cash
+2. Kupic narkotylow tyle ile uniesiesz
+3. Kupic bombe
+4. Wysadzic brame/punkt przejscia
+5.
+
+Cel drugiej mapy:
+1. Sprzedaj tyle drugow ile mozesz
+2. Kup bron do wyeliminowania przeciwnej mafii
+3. Zabij przeciwnikow blokujacych dostep do potencjalnych klientow(zdobadz wplywy)
+4. Po zebraniu odpowiedniej ilosci broni i gotowki, przejdz do ostatniej sceny walki z bossem
+
+Przedmioty:
+
+1. KOKAINA
+2. Bron palna / pistolet / strzelba / karabin maszynowy AK-47 / granatnik
+3. TNT bomb
+4. Ciuchy, Pablo Escobar lubil sie dobrze ubrac
+5. Gotowka / CASH / $
+
+Opis:
+bron : waga, dmg, typ broni
+kokaina : waga, typ, moc!
+ciuchy, waga, typ, armor
+
+
+Postac Pablo: ### Character Creation Screen ###
+
+Wybor symbolu poruszania sie: @, #, &
+Mozesz wybrac itemy startowe:
+
+1. Plecak, mozesz wiecej uniesc zwieksza zmienna Weight
+2. Pistolet, zaczynasz z pistoletem mozesz szybciej wyeliminowac przeciwnika
+3. Ladna koszula, zwieksza odpornosc i urok osobisty, dostajesz wiecej kasy za sprzdany koks
+
+
+
+
+Def hero:
+Variables:
+1) Capacity
+2) Damage
+3) Armor
+4) $$$ Cash
+
+
+Def Enemies:
+Variables:
+1)Damage
+2)Armor
+3)Za zabicie kasa

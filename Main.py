@@ -1,22 +1,13 @@
 import os
-import sys
-import tty
-import termios
 import print_board
 import player
 import backpack
 import introduction
 import interactions
-
-
-def read_map_from_file(filename):
-
-    with open(filename) as f:
-        read_data = f.read().splitlines()
-
-    board = [list(x) for x in read_data]
-
-    return board
+import change_level
+import load_map
+import sys
+import key_getch
 
 
 def player_starting_position(y, x, board):
@@ -31,7 +22,7 @@ def player_moving(y, x, board):
     position = ()
 
     while True:
-        ch = getch()
+        ch = key_getch.getch()
 
         if ch == 'd' and board[y][x+1] not in wall:
             board[y][x] = ' '
@@ -67,18 +58,6 @@ def player_moving(y, x, board):
     return position
 
 
-def getch():
-
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-    try:
-        tty.setraw(sys.stdin.fileno())
-        ch = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    return ch
-
-
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -87,9 +66,9 @@ def main():
 
     player_starting_stats = player.player_starting_bonus(starting_bonus)
 
-    map1 = read_map_from_file('Map1.txt')
-    position = player_starting_position(23, 50, map1)
-    print_board.print_map(position[0], position[1], map1, player_starting_stats, starting_bonus[0])
+    game_map = load_map.read_map_from_file('Map1.txt')
+    position = player_starting_position(23, 50, game_map)
+    print_board.print_map(position[0], position[1], game_map, player_starting_stats, starting_bonus[0])
     player_stats = player_starting_stats
 
     inventory = {}
@@ -97,9 +76,9 @@ def main():
     backpack.save_backpack_to_file(inventory)
 
     while True:
-        position = player_moving(position[0], position[1], map1)
-        print_board.print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
-        player_stats = interactions.take_quest(position[0], position[1], map1, player_stats)
+        position = player_moving(position[0], position[1], game_map)
+        print_board.print_map(position[0], position[1], game_map, player_stats, starting_bonus[0])
+        player_stats = interactions.take_quest(position[0], position[1], game_map, player_stats)
 
 
 if __name__ == '__main__':

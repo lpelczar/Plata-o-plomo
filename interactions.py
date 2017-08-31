@@ -4,14 +4,16 @@ import time
 import random
 import boss
 import sys
+import change_level
 enemies_killed = 0
 
 
 def take_quest(y, x, board, player_stats):
-    interactions = ['?', '|', 'E', '$', ')']
+    interactions = ['?', '|', 'E', '$', ')', 'I']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
         interaction = (board[y][x+1], board[y][x-1])
+        print(interaction)
         check_encounter(player_stats, interaction)
 
     elif board[y+1][x] in interactions or board[y-1][x] in interactions:
@@ -42,6 +44,9 @@ def check_encounter(player_stats, interaction):
 
     elif interaction[0] == ')' or interaction[1] == ')':
         collect_TNT(player_stats)
+
+    elif interaction[0] == 'I' or interaction[1] == 'I':
+        change_level.next_level()
 
     return player_stats
 
