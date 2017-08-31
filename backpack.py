@@ -52,7 +52,7 @@ def display_backpack(backpack):
     line_number = 1
 
     try:
-        print(' ', table_line*table_length, ' BACKPACK ', table_line*table_length)
+        print(table_line*table_length, ' BACKPACK ', table_line*table_length)
 
         for key, value in backpack.items():
             if value[2] == 'clothes':
@@ -60,7 +60,7 @@ def display_backpack(backpack):
                 print('|', (str(line_number)+'.'), formated_line, '|')
                 line_number += 1
             elif value[2] == 'weapon':
-                formated_line = '{:>5} {:<5} {:>10} {:>10} {:<3}'.format('Damage:', value[0], key, 'Weight:', value[1])
+                formated_line = '{:>5} {:<5} {:>10} {:>9} {:<3}'.format('Damage:', value[0], key, 'Weight:', value[1])
                 print('|', (str(line_number)+'.'), formated_line, '|')
                 line_number += 1
 
@@ -70,6 +70,7 @@ def display_backpack(backpack):
                 line_number += 1
 
         print('| ', table_line*(len(formated_line)+1), ' |')
+        print('Press w,a,s,d to back to game:')
 
     except:
         print('Empty')
