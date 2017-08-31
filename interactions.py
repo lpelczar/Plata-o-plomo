@@ -8,7 +8,7 @@ enemies_killed = 0
 
 
 def take_quest(y, x, board, player_stats):
-    interactions = ['?', '|', 'E', '$']
+    interactions = ['?', '|', 'E', '$', ')']
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
         interaction = (board[y][x+1], board[y][x-1])
@@ -39,6 +39,9 @@ def check_encounter(player_stats, interaction):
 
     elif interaction[0] == 'E' or interaction[1] == 'E':
         fight_enemy(player_stats)
+
+    elif interaction[0] == ')' or interaction[1] == ')':
+        collect_TNT(player_stats)
 
     return player_stats
 
@@ -167,7 +170,6 @@ def sell_drugs(player_stats):
                 if amount_answer == 'yes':
                     amount_of_cocain = inventory.get('COCAINE')
                     cocain_left = amount_of_cocain[1] - amount
-                    print(cocain_left)
                     inventory['COCAINE'] = (0, cocain_left, 'drugs')
                     player_stats[3] += price * amount
                     break
@@ -177,11 +179,13 @@ def sell_drugs(player_stats):
                     break
             else:
                 print('BASTARDS: Ok Pablo, this is fair price! Lets trade.')
+
                 amount_of_cocain = inventory.get('COCAINE')
                 amount = random.randint(1, 5)
+
                 print('I want ', amount, 'kg of COCAINE.')
+
                 cocain_left = amount_of_cocain[1] - amount
-                print(cocain_left)
                 inventory['COCAINE'] = (0, cocain_left, 'drugs')
                 player_stats[3] += price_cocaine * amount
                 break
@@ -189,4 +193,32 @@ def sell_drugs(player_stats):
         else:
             print('BASTARDS: You dont have COCAINE Pablo, hahahah! What happend with you RAT!')
             break
-        backpack.save_backpack_to_file(inventory)
+    backpack.save_backpack_to_file(inventory)
+
+
+def collect_TNT(player_stats):
+    inventory = backpack.open_backpack_file()
+
+    print('FABIO OCHOA: Hola Pablo! Welcome in my shop!')
+    time.sleep(1)
+    print('PABLO ESCOBAR: Hola Fabio')
+
+    while True:
+
+        ask_for_buy = input('FABIO OCHOA: You looking for some explode materials Pablo?').lower()
+
+        if ask_for_buy == 'yes':
+            TNT_price = 500
+
+            if player_stats[3] > TNT_price:  # Zmienic na 2000, wersja do testow
+                player_stats[3] -= TNT_price
+                inventory['TNT'] = (1500, 250, 'explode materials')
+                break
+
+            else:
+                print('FABIO OCHOA: Im sorry Pablo but you dont have enough money')
+                break
+        else:
+            print('FABIO OCHOA: For what you came here fool! Go away!')
+            break
+    backpack.save_backpack_to_file(inventory)

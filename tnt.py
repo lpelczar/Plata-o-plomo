@@ -1,14 +1,19 @@
 import time
 import print_board
+import backpack
 
 
 def ask_explode_intent(y, x, board, player_stats):
+    inventory = backpack.open_backpack_file()
+
     while True:
         answer = input('Do you want to blow up this wall? ').lower()
-        if answer == 'yes':
+        if answer == 'yes' and 'TNT' in inventory:
             explode(y, x, board, player_stats)
             break
         else:
+            print('PABLO: F*CK! I dont have TNT to blow up this wall!')
+            time.sleep(2)
             break
 
 
