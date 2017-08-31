@@ -2,6 +2,7 @@ import os
 import random
 import time
 import sys
+import highscore
 
 
 def clear_console():
@@ -15,8 +16,9 @@ def display_boss():
 
 
 def play_cold_warm():
-    user_guesses = 5
+    user_guesses = 10
     correct_answer = generate_unique_number()
+    print(correct_answer)
     while user_guesses > 0:
         user_input = get_user_input()
         feedback = compare_user_answer(user_input, correct_answer)
@@ -26,6 +28,9 @@ def play_cold_warm():
         print('   Guesses left:', user_guesses - 1)
         if feedback == ['hot', 'hot', 'hot']:
             display_screen('win.txt')
+            score = user_guesses * 111
+            highscore.add_score_to_file(score)
+            highscore.display_highscore()
             break
         user_guesses -= 1
         if user_guesses == 0:

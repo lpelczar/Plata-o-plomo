@@ -7,11 +7,11 @@ X                                                                               
 X                                                 E                                   X
 X                                         E                                           X
 X                                                                                     X
-X                                                                              ///////XXXXXXXXXXXXXXXX
-]                                                                              /              l      X
-]                                                                              l              l BOSS X
-]                                                                              \              l      X
-]                                                                              \\\\\\\XXXXXXXXXXXXXXXX
+X                                                                              XXXXXXXXXXXXXXXXXXXXXXX
+]                                                                              X              l      X
+]                                                                              (              l BOSS X
+]                                                                              X              l      X
+]                                                                              XXXXXXXXXXXXXXXXXXXXXXX
 ]                                                                                     X
 X                                                                                     X
 X                                                                                     X
