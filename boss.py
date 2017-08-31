@@ -10,12 +10,25 @@ def clear_console():
 
 
 def display_boss():
+    """Read from file and display ASCII ART with boss
+    Args:
+        none
+    Returns:
+        none
+    """
     with open('boss.txt') as f:
         read_data = f.read()
     print('\033[91m' + read_data + '\033[0m')
 
 
 def play_cold_warm():
+    """Play hot warm cold with the boss, if user win display win screen and highscore,
+        if user lose display lose screen
+    Args:
+        none
+    Returns:
+        none
+    """
     user_guesses = 10
     correct_answer = generate_unique_number()
     print(correct_answer)
@@ -39,6 +52,12 @@ def play_cold_warm():
 
 
 def get_user_input():
+    """Ask user for a unique number of 3 digit length
+    Args:
+        none
+    Returns:
+        list of numbers casted to strings
+    """
     while True:
         user_input = input('Enter 3-digit unique number: ')
         if user_input.isdigit() and len(user_input) == 3 and len(set(user_input)) == len(user_input):
@@ -49,6 +68,12 @@ def get_user_input():
 
 
 def display_screen(filename):
+    """Read txt file and display the content to cleared console
+    Args:
+        filename: name of the file
+    Returns:
+        none
+    """
     clear_console()
     with open(filename) as f:
         read_data = f.read()
@@ -56,6 +81,13 @@ def display_screen(filename):
 
 
 def compare_user_answer(guess, correct_answer):
+    """Compare user answer with correct answer and append hints to a list
+    Args:
+        guess: user guess
+        correct_answer: answer which is correct
+    Returns:
+        hints: list of hints
+    """
     hints = []
     for i in range(len(guess)):
         if guess[i] == correct_answer[i]:
@@ -68,12 +100,24 @@ def compare_user_answer(guess, correct_answer):
 
 
 def generate_unique_number():
+    """Generate number with 3 unique digits
+    Args:
+        none
+    Returns:
+        list of 3 unique numbers
+    """
     unique_number_list = [str(x) for x in range(10)]
     random.shuffle(unique_number_list)
     return unique_number_list[:3]
 
 
 def start_fight():
+    """Ask user if he want to start fight with boss, if yes start fight, if no display lose screen.
+    Args:
+        none
+    Returns:
+        none
+    """
     clear_console()
     display_boss()
     while True:
