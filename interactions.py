@@ -12,11 +12,15 @@ def take_quest(y, x, board, player_stats):
 
     if board[y][x+1] in interactions or board[y][x-1] in interactions:
         interaction = (board[y][x+1], board[y][x-1])
-        check_encounter(player_stats, interaction)
+        player_stats, interaction = check_encounter(player_stats, interaction)
+        board[y][x+1] = interaction[0]
+        board[y][x-1] = interaction[1]
 
     elif board[y+1][x] in interactions or board[y-1][x] in interactions:
         interaction = (board[y+1][x], board[y-1][x])
-        check_encounter(player_stats, interaction)
+        player_stats, interaction = check_encounter(player_stats, interaction)
+        board[y+1][x] = interaction[0]
+        board[y-1][x] = interaction[1]
 
     elif board[y][x+1] == '(':
         tnt.ask_explode_intent(y, x, board, player_stats)
@@ -24,7 +28,9 @@ def take_quest(y, x, board, player_stats):
     elif board[y-1][x] == '=':
         guns_shop(player_stats)
 
-    return player_stats
+    position = (y, x, board)
+
+    return position, player_stats
 
 
 def check_encounter(player_stats, interaction):
@@ -38,18 +44,21 @@ def check_encounter(player_stats, interaction):
         sell_drugs(player_stats)
 
     elif interaction[0] == 'E' or interaction[1] == 'E':
-        fight_enemy(player_stats)
+        defeat = False
+        player_stats, defeat = fight_enemy(player_stats, defeat)
+        if defeat:
+            interaction = (' ', ' ')
 
-    return player_stats
+    return player_stats, interaction
 
 
-def fight_enemy(player_stats):
+def fight_enemy(player_stats, defeat):
     global enemies_killed
     enemy_life = 100
     print('You have encounter an enemy.')
     while True:
-        answer = input('Enter "attack" to attack or "run" to run away: ')
-        if answer == 'attack':
+        answer = input('Enter "a" to attack or "r" to run away: ')
+        if answer == 'a':
             if player_stats[1] <= 10:
                 enemy_life -= 20
                 player_stats[2] -= 1
@@ -64,17 +73,18 @@ def fight_enemy(player_stats):
                 print('You hitted for 40. You lost 1 armor Enemy life:', enemy_life, 'Your armor:', player_stats[2])
             if enemy_life <= 0:
                 print('You won!')
+                defeat = True
                 enemies_killed += 1
                 time.sleep(0.5)
                 break
             if player_stats[2] <= 0:
                 boss.display_screen('lose.txt')
                 sys.exit()
-        if answer == 'run':
+        if answer == 'r':
             print('Run you fool!!!')
             time.sleep(0.5)
             break
-    return player_stats
+    return player_stats, defeat
 
 
 def guns_shop(player_stats):

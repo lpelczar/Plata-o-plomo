@@ -87,7 +87,7 @@ def main():
 
     player_starting_stats = player.player_starting_bonus(starting_bonus)
 
-    map1 = read_map_from_file('Map1.txt')
+    map1 = read_map_from_file('Map2.txt')
     position = player_starting_position(23, 50, map1)
     print_board.print_map(position[0], position[1], map1, player_starting_stats, starting_bonus[0])
     player_stats = player_starting_stats
@@ -99,7 +99,7 @@ def main():
     while True:
         position = player_moving(position[0], position[1], map1)
         print_board.print_map(position[0], position[1], map1, player_stats, starting_bonus[0])
-        player_stats = interactions.take_quest(position[0], position[1], map1, player_stats)
+        position, player_stats = interactions.take_quest(position[0], position[1], map1, player_stats)
 
 
 if __name__ == '__main__':
