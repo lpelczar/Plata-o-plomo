@@ -17,17 +17,11 @@ The game should be about a creature (human? alien? bear? ant?) who is travelling
 * Create a hall of fame screen (highscores) - name, max level, time spent, monsters killed etc.
 * Create an about screen (info about authors!) and how-to-play screen (how to move, attack, drink potions etc.)
 * Think about at least 2 different levels/areas. Each of them should have an unique "feel".
-* Prepare a story:
-- an introduction screen,
-- a character creation screen,
-- a win/lose screen,
+* Prepare a story: an introduction screen, a character creation screen, a win/lose screen,
 * Create a hall of fame screen (highscores) - name, max level, time spent, monsters killed etc.
 * Create an about screen (info about authors!) and how-to-play screen (how to move, attack, drink potions etc.)
 * Think about at least 2 different levels/areas. Each of them should have an unique "feel" - different color and objects, different enemies etc.
-* Player would like to gather at least 2 different items (all items must have a name, a type and a weight) Types of items depends on the story of your game - i.e.
-- Clothes
-- Food
-- Weapons
+* Player would like to gather at least 2 different items (all items must have a name, a type and a weight) Types of items depends on the story of your game - i.e. Clothes, Food, Weapons
 * Player could be able to display detailed info about inventory (name, type, weight and any additional info you want to add about an item) - a table containing full information about collected items, as well as available storage.
 * Player would like to meet some challenges (for example some kind of puzzles or riddles) to progress through the game - i.e. to move from one level to another.
 * At the end of the game player would like to meet THE BOSS (use ASCII art, at least 5x5 characters, different colors). To defeat boss you have to play hot-cold game (sounds familiar? :) and win. Thanks to defeating Boss player will feel proud of (him/her)self.
@@ -46,6 +40,8 @@ the street or killing enemies. Beware! This journey will not be easy!
 ### Screenshots
 
 ![start](http://i64.tinypic.com/2d6lev6.png)
+
+![menu](http://i67.tinypic.com/dyvejo.png)
 
 ![level1](http://i63.tinypic.com/1427x5f.png)
 
