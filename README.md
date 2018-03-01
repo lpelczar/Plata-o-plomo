@@ -1,7 +1,5 @@
 # RogueLike Game called "Plata o plomo"
 
-Game created in [Codecool](https://codecool.com/) programming course.
-
 ## Task information
 
 ### Story
@@ -46,3 +44,7 @@ the street or killing enemies. Beware! This journey will not be easy!
 ![level1](http://i63.tinypic.com/1427x5f.png)
 
 ![level2](http://i67.tinypic.com/219w2z4.png)
+
+### More info
+
+* Written in [Codecool](https://codecool.com/) programming course
