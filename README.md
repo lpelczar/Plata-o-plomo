@@ -37,13 +37,17 @@ the street or killing enemies. Beware! This journey will not be easy!
 
 ### Screenshots
 
-![start](http://i64.tinypic.com/2d6lev6.png)
+![c1](https://raw.github.com/lpelczar/Plata-o-plomo/master/screenshots/plata1.png)
 
-![menu](http://i67.tinypic.com/dyvejo.png)
+![c1](https://raw.github.com/lpelczar/Plata-o-plomo/master/screenshots/plata2.png)
 
-![level1](http://i63.tinypic.com/1427x5f.png)
+![c1](https://raw.github.com/lpelczar/Plata-o-plomo/master/screenshots/plata3.png)
 
-![level2](http://i67.tinypic.com/219w2z4.png)
+![c1](https://raw.github.com/lpelczar/Plata-o-plomo/master/screenshots/plata4.png)
+
+![c1](https://raw.github.com/lpelczar/Plata-o-plomo/master/screenshots/plata5.png)
+
+![c1](https://raw.github.com/lpelczar/Plata-o-plomo/master/screenshots/plata6.png)
 
 ### More info
 
